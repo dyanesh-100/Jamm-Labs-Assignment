@@ -9,14 +9,15 @@ export default function TopBarJamms() {
         <LocationPill />
       </View>
       <View className="flex-1">
-        <Text className="text-lg font-semibold text-zinc-900 text-center">Jamms</Text>
+        <Text className="text-2xl font-bold text-zinc-900 text-center">Jamms</Text>
       </View>
       <View className="flex-1 items-end">
         <Avatar
-          size={40}
+          size={50}
+          percentage={42}
           uri="https://images.unsplash.com/photo-1607746882042-944635dfe10e?q=80&w=200&auto=format&fit=crop"
         />
       </View>
     </View>
-  );
+  )
 }

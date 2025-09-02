@@ -8,7 +8,7 @@ export default function FilterBar() {
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 8, paddingTop: 8, gap: 12 }}
+      contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 5, paddingTop: 10, gap: 12 }}
     >
       <FilterChip label="Interests" count={0} />
       <FilterChip label="Age" value="18–29" selected />

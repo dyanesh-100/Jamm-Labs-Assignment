@@ -7,7 +7,7 @@ export default function SegmentTabs({ value = "Upcoming", onChange = () => {} })
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 8,paddingTop: 8, gap: 12 }}
+      contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 5,paddingTop: 10, gap: 12 }}
     >
       {tabs.map((t) => {
         const active = t === value

@@ -10,12 +10,13 @@ export default function TopBar() {
         <LocationPill />
       </View>
       <View className="flex-1">
-        <Text className="text-lg font-semibold text-zinc-900 text-center">People</Text>
+        <Text className="text-2xl font-bold text-zinc-900 text-center">People</Text>
       </View>
       <View className="flex-1 items-end">
         <Avatar
-          size={40}
+          size={50}
           uri="https://images.unsplash.com/photo-1607746882042-944635dfe10e?q=80&w=200&auto=format&fit=crop"
+          percentage={42}
         />
       </View>
     </View>

@@ -83,14 +83,41 @@ export default function PostJammModal({ onClose, addJamm }) {
       alert("Please fill all the required fields.")
       return
     }
-
-    const hostNames = ["John Doe", "Jane Smith", "Peter Jones", "Mary Williams", "David Brown"]
+    const hostNames = [
+      "John Doe",
+      "Jane Smith",
+      "Peter Jones",
+      "Mary Williams",
+      "David Brown",
+      "Priya Sharma",
+      "Arjun Mehta",
+      "Neha Kapoor",
+      "Rahul Verma",
+      "Sonal Gupta",
+      "Kiran Rao",
+      "Emily Johnson",
+      "Michael Lee",
+      "Sophia Martinez",
+      "Daniel Wilson",
+      "Olivia Taylor",
+      "Liam Anderson",
+      "Aarav Nair",
+      "Ananya Iyer",
+      "Rohan Das",
+    ];
     const statuses = ["cta", "requested", "attending"]
     const hostAvatars = [
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=200&auto=format&fit=crop",
-    ]
+      "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1607746882042-944635dfe10e?q=80&w=200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?q=80&w=200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1541532713592-79a0317b6b77?q=80&w=200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1544006658-8499f9d9c6b6?q=80&w=200&auto=format&fit=crop",
+    ];
 
     const newJamm = {
       id: Math.random().toString(36).substr(2, 9),
