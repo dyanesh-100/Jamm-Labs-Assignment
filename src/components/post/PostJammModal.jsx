@@ -178,7 +178,7 @@ export default function PostJammModal({ onClose, addJamm }) {
         <View className="h-[92%] rounded-t-3xl bg-white px-4 pb-4 pt-3">
           <View className="mb-4 flex-row items-center justify-between">
             <View className="w-10" />
-            <Text className="flex-1 text-center text-lg font-semibold">Create your Jamm</Text>
+            <Text className="flex-1 text-center text-2xl font-semibold">Create your Jamm</Text>
             <Pressable
               accessibilityLabel="Close"
               onPress={onClose}
@@ -376,7 +376,7 @@ export default function PostJammModal({ onClose, addJamm }) {
             >
               <Text className="text-white font-medium">
                 {"Post a "}
-                <Text className="text-pink-500 font-semibold">{"JAMM"}</Text>
+                <Text className="text-pink-500 font-semibold text-lg">{"JAMM"}</Text>
               </Text>
           </Pressable>
           

@@ -33,7 +33,7 @@ export default function PeopleScreen() {
         >
           <Text className="text-white font-medium">
             {'Post a '}
-            <Text className="text-pink-500 font-semibold">{'JAMM'}</Text>
+            <Text className="text-pink-500 font-semibold text-lg">{'JAMM'}</Text>
           </Text>
         </Pressable>
         
