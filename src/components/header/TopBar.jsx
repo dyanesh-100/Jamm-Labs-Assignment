@@ -14,7 +14,7 @@ export default function TopBar() {
       </View>
       <View className="flex-1 items-end">
         <Avatar
-          size={32}
+          size={40}
           uri="https://images.unsplash.com/photo-1607746882042-944635dfe10e?q=80&w=200&auto=format&fit=crop"
         />
       </View>

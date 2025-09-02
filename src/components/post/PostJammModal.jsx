@@ -2,7 +2,7 @@
 import { useMemo, useState } from "react"
 import { View, Text, Pressable, TextInput, ScrollView, Image } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
-import DateTimeWheelPicker from "./DateTimeWheelPicker"
+import DateTimePicker from "@react-native-community/datetimepicker"
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons"
 
 function Chip({ label, selected, onPress, icon }) {
@@ -61,7 +61,7 @@ const ACTIVITIES = Object.keys(ICONS)
 const GUEST_COUNTS = [1, 2, 3, 4, 5, 6, 7]
 const PAYING = ["Free", "Go Dutch", "Split the bill", "It's on me"]
 
-export default function PostJammModal({ onClose }) {
+export default function PostJammModal({ onClose, addJamm }) {
   const [name, setName] = useState("")
   const [activities, setActivities] = useState(["Breakfast"])
   const [guests, setGuests] = useState(3)
@@ -77,6 +77,53 @@ export default function PostJammModal({ onClose }) {
 
   const nameCount = `${name.length}/35`
   const descCount = `${desc.length}/150`
+
+  const handlePostJamm = () => {
+    if (!name || activities.length === 0 || !guests || !paying || !location || !desc || !fromAt || !toAt) {
+      alert("Please fill all the required fields.")
+      return
+    }
+
+    const hostNames = ["John Doe", "Jane Smith", "Peter Jones", "Mary Williams", "David Brown"]
+    const statuses = ["cta", "requested", "attending"]
+    const hostAvatars = [
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=200&auto=format&fit=crop",
+    ]
+
+    const newJamm = {
+      id: Math.random().toString(36).substr(2, 9),
+      title: name,
+      category: activities.join(", "),
+      people: `${guests} People`,
+      price: paying === "Free" ? "Free" : "Attendance fee ₹125.00",
+      start: fromAt.toLocaleString("en-US", {
+        weekday: "long",
+        day: "2-digit",
+        month: "long",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      }).replace(",", " ·"),
+      end: toAt.toLocaleString("en-US", {
+        weekday: "long",
+        day: "2-digit",
+        month: "long",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      }).replace(",", " ·"),
+      location,
+      description: desc,
+      hostName: hostNames[Math.floor(Math.random() * hostNames.length)],
+      status: statuses[Math.floor(Math.random() * statuses.length)],
+      hostAvatar: hostAvatars[Math.floor(Math.random() * hostAvatars.length)],
+    }
+
+    addJamm(newJamm)
+    onClose()
+  }
 
   function toggleActivity(a) {
     setActivities((prev) => (prev.includes(a) ? prev.filter((x) => x !== a) : [...prev, a]))
@@ -201,7 +248,7 @@ export default function PostJammModal({ onClose }) {
               <Text className="mb-2 text-sm text-neutral-500">Date & Time</Text>
               <View className="rounded-xl border border-neutral-200 bg-white p-3">
                 <Pressable
-                  onPress={() => setPickerTarget("from")}
+                  onPress={() => setPickerTarget("from-date")}
                   className="mb-3 flex-row items-center justify-between rounded-lg border border-neutral-200 px-3 py-3"
                 >
                   <Text className={fromAt ? "text-neutral-700" : "text-neutral-400"}>
@@ -224,7 +271,7 @@ export default function PostJammModal({ onClose }) {
                 </View>
 
                 <Pressable
-                  onPress={() => setPickerTarget("to")}
+                  onPress={() => setPickerTarget("to-date")}
                   className="flex-row items-center justify-between rounded-lg border border-neutral-200 px-3 py-3"
                 >
                   <Text className={toAt ? "text-neutral-700" : "text-neutral-400"}>
@@ -297,7 +344,7 @@ export default function PostJammModal({ onClose }) {
               accessible
               accessibilityRole="button"
               accessibilityLabel="Post a JAMM"
-            
+              onPress={handlePostJamm}
               className="absolute bottom-8 self-center bg-black rounded-full px-6 py-3.5 shadow-lg"
             >
               <Text className="text-white font-medium">
@@ -310,13 +357,26 @@ export default function PostJammModal({ onClose }) {
       </View>
 
       {pickerTarget ? (
-        <DateTimeWheelPicker
-          initial={pickerTarget === "from" ? fromAt || new Date() : toAt || new Date()}
-          onCancel={() => setPickerTarget(null)}
-          onConfirm={(d) => {
-            if (pickerTarget === "from") setFromAt(d)
-            else setToAt(d)
+        <DateTimePicker
+          value={(pickerTarget.startsWith("from") ? fromAt : toAt) || new Date()}
+          mode={pickerTarget.endsWith("date") ? "date" : "time"}
+          display="default"
+          onChange={(event, selectedDate) => {
+            const target = pickerTarget.split("-")[0]
+            const currentDate = selectedDate || (target === "from" ? fromAt : toAt) || new Date()
             setPickerTarget(null)
+
+            if (event.type === "set") {
+              if (target === "from") {
+                setFromAt(currentDate)
+              } else {
+                setToAt(currentDate)
+              }
+
+              if (pickerTarget.endsWith("-date")) {
+                setPickerTarget(`${target}-time`)
+              }
+            }
           }}
         />
       ) : null}

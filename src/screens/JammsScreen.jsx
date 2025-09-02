@@ -4,10 +4,9 @@ import { View, FlatList, Pressable, Text } from "react-native"
 import TopBarJamms from "../components/header/TopBarJamms"
 import SegmentTabs from "../components/jamms/SegmentTabs"
 import JammCard from "../components/jamms/JammCard"
-import jamms from "../data/jamms"
 import { openPostJammModal } from "../components/post/PostJammModalContext"
 
-export default function JammsScreen() {
+export default function JammsScreen({ jamms }) {
   const [segment, setSegment] = useState("Upcoming")
 
   return (
@@ -20,6 +19,7 @@ export default function JammsScreen() {
             title={item.title}
             hostName={item.hostName}
             hostAvatar={item.hostAvatar}
+            description={item.description}
             category={item.category}
             start={item.start}
             end={item.end}

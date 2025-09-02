@@ -25,7 +25,7 @@ const people = [
     age: 29,
     verified: true,
     photo:
-      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=200&auto=format&fit=crop',
     bio:
       'Product designer with a soft spot for smooth interactions and pixel-perfect layouts. Believer in simplicity.',
   },

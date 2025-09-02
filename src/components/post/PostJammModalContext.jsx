@@ -8,10 +8,16 @@ const Ctx = createContext({ open: () => {}, close: () => {} })
 
 let externalOpen = null
 
-export function PostJammModalProvider({ children }) {
+export function PostJammModalProvider({ children, addJamm }) {
   const [visible, setVisible] = useState(false)
-  const open = useCallback(() => setVisible(true), [])
-  const close = useCallback(() => setVisible(false), [])
+
+  const open = useCallback(() => {
+    setVisible(true)
+  }, [])
+
+  const close = useCallback(() => {
+    setVisible(false)
+  }, [])
 
   externalOpen = open
 
@@ -27,7 +33,7 @@ export function PostJammModalProvider({ children }) {
         onRequestClose={close}
         transparent
       >
-        <PostJammModal onClose={close} />
+        <PostJammModal onClose={close} addJamm={addJamm} />
       </Modal>
     </Ctx.Provider>
   )
